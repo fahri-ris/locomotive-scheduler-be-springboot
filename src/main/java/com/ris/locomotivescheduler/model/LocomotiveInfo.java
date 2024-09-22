@@ -5,22 +5,28 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.time.Instant;
-import java.util.UUID;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Document(collection = "locomotive_info")
+@Document(collection = "locomotive_infos")
 @Builder
 public class LocomotiveInfo {
     @Id
-    private String code;
-    private String name;
-    private String dimension;
-    private String status;
-    private Instant createdAt;
+    @Field("_id")
+    private String locoCode;
+
+    @Field("loco_name")
+    private String locoName;
+
+    @Field("loco_dimension")
+    private String locoDimension;
+
+    @Field("loco_status")
+    private String locoStatus;
+
+    @Field("created_at")
+    private String createdAt;
 }

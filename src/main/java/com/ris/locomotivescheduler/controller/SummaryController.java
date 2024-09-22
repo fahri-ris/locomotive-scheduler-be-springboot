@@ -21,7 +21,7 @@ public class SummaryController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<SummaryResponse>> getAllSummary(){
+    public ResponseEntity<SummaryResponse> getAllSummary(){
         return ResponseEntity.ok(summaryService.getAllSummary());
     }
 }
