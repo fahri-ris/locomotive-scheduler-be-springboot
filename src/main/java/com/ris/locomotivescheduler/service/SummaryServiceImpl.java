@@ -105,7 +105,7 @@ public class SummaryServiceImpl implements SummaryService {
             // get data by status count from mongodb
             // save summary report to postgres
             int summaryCount;
-            String dateMinusOneHour = minusOneHour.format(formatterIso).substring(0, 19) + "+07.00";
+            String dateMinusOneHour = minusOneHour.format(formatterIso).substring(0, 19) + "+07:00";
             for(int i = 1; i <= statusList.length; i++) {
                 summaryCount = locomotiveInfoRepository.countByLocoStatusIgnoreCaseAndCreatedAtAfter(statusList[i - 1], dateMinusOneHour);
 
@@ -123,7 +123,6 @@ public class SummaryServiceImpl implements SummaryService {
                 String logLocomotiveInfo = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(savedSummaries);
                 log.info("Summary Locomotive data successfully posted");
                 log.info("Summaries : {}", logLocomotiveInfo);
-                log.info(dateMinusOneHour);
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
